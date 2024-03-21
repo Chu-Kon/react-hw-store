@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Product({product}) {
+export default function Product({product, buyProduct}) {
   return (
     <div style={{width: '400px', height: '450px', border: 'solid black', margin: '5px'}}>
         <p>{product.title}</p>
@@ -11,6 +11,7 @@ export default function Product({product}) {
         <p>{product.category}</p>
         {/* <img src={product.thumbnail} width={200}></img> */}
         <img src={product.thumbnail || product.image} alt={product.title} style={{ maxWidth: '200px', maxHeight: '200px' }}></img>
+        <button onClick={()=>buyProduct(product)}>Купить</button>
     </div>
   )
 }
