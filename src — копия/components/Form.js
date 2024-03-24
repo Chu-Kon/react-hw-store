@@ -12,6 +12,7 @@ export default function Form({ addProduct }) {
             brand: form.brand.value,
             image: imageSrc,
             price: parseInt(form.price.value),
+            // discountPercentage: parseFloat(form.discountPercentage.value),
             discountPercentage: form.discountPercentage.value,
             description: form.description.value,
             category: form.category.value
@@ -20,12 +21,23 @@ export default function Form({ addProduct }) {
     form.reset()
     setImageSrc(null)
     }
-
+    // const handleImageUpload = (event) => {
+    //   const file = event.target.files[0]
+    //   const imageUrl = URL.createObjectURL(file)
+    //   setImageSrc(imageUrl)
+    // }
     const handleImageUpload = (event) => {
-      const file = event.target.files[0]
-      const imageUrl = URL.createObjectURL(file)
-      setImageSrc(imageUrl)
-    }
+      const file = event.target.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+              setImageSrc(reader.result);
+          };
+          reader.readAsDataURL(file);
+      }
+  };
+  
+    
 
   return (
     <div>
